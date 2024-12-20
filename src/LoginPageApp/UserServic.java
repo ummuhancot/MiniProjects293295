@@ -177,7 +177,34 @@ public class UserServic {
 
     //6-adım:password doğrulama metodu:ÖDEVV
     private boolean validatePassword(String password){
-        return true;
+
+            boolean isValid = true;
+
+            if (password.length() < 8) {
+                System.out.println("Şifre en az 8 karakter uzunluğunda olmalıdır!");
+                isValid = false;
+            } else if (!password.matches(".*[A-Z].*")) {
+                System.out.println("Şifre en az bir büyük harf içermelidir!");
+                isValid = false;
+            } else if (!password.matches(".*[a-z].*")) {
+                System.out.println("Şifre en az bir küçük harf içermelidir!");
+                isValid = false;
+            } else if (!password.matches(".*[0-9].*")) {
+                System.out.println("Şifre en az bir rakam içermelidir!");
+                isValid = false;
+            } else if (!password.matches(".*[!@#$%^&*()\\-_=+<>?/].*")) {
+                System.out.println("Şifre en az bir özel karakter içermelidir! (!@#$%^&*()-_+=<>?/ gibi)");
+                isValid = false;
+            } else if (password.contains(" ")) {
+                System.out.println("Şifre boşluk içeremez!");
+                isValid = false;
+            }
+
+            if (!isValid) {
+                System.out.println("Geçersiz şifre, tekrar deneyiniz");
+            }
+
+            return isValid;
     }
 
 
